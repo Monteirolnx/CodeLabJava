@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.monteiro</groupId>
+  <artifactId>codelabjava</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>resultpattern</module>
+    <!-- Outros módulos podem ser adicionados aqui -->
+  </modules>
+
+  <name>CodeLabJava</name>
+  <description>Repositório de exemplos em Java</description>
+
+  <!-- Definir propriedades comuns -->
+  <properties>
+    <java.version>17</java.version>
+    <spring-boot.version>3.1.1</spring-boot.version>
+  </properties>
+
+  <!-- Gerenciamento de dependências -->
+  <dependencyManagement>
+    <dependencies>
+      <!-- Importar o BOM do Spring Boot -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- Plugins comuns (opcional) -->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Plugin do Spring Boot -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
