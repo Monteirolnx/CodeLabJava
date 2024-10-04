@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Updated Spring Boot Version -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.4</version>
+        <relativePath />
+    </parent>
+
+    <groupId>com.monteiro</groupId>
+    <artifactId>wsq-to-ansi-api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>wsq-to-ansi-api</name>
+    <description>API para converter arquivos WSQ em templates ANSI 378</description>
+
+    <!-- Updated Java Version -->
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Boot Web Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Test Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <!-- jnbis Dependency via JitPack -->
+        <!-- https://mvnrepository.com/artifact/com.github.mhshams/jnbis -->
+        <dependency>
+            <groupId>com.github.mhshams</groupId>
+            <artifactId>jnbis</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+
+        <!-- SourceAFIS Dependency -->
+        <dependency>
+            <groupId>com.machinezoo.sourceafis</groupId>
+            <artifactId>sourceafis</artifactId>
+            <version>3.18.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- Added JitPack Repository -->
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven Plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
