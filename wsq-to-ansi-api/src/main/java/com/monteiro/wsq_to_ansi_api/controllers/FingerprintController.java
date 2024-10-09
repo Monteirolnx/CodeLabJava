@@ -23,38 +23,31 @@ public class FingerprintController {
     @PostMapping("/convert")
     public ResponseEntity<byte[]> convertWsqToAnsiTemplate(@RequestBody String base64WsqImage) {
         try {
-            // Decodifica a string Base64 para um array de bytes
             byte[] wsqImageBytes = decodeBase64ToBytes(base64WsqImage);
 
-            // Decodifica WSQ e obtém um BufferedImage
             BufferedImage image = decodeWsqToBufferedImage(wsqImageBytes);
 
-            // Gera o template ANSI 378
             byte[] ansiTemplateBytes = generateAnsiTemplate(image);
 
-            // Valida o template gerado
             if (!isValidAnsiTemplate(ansiTemplateBytes)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
-            // Retorna o template ANSI 378 como resposta
             return ResponseEntity
                     .ok()
                     .header("Content-Type", "application/octet-stream")
                     .body(ansiTemplateBytes);
 
         } catch (Exception e) {
-            e.printStackTrace(); // Para fins de depuração
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    // Método para decodificar a string Base64 para array de bytes
     private byte[] decodeBase64ToBytes(String base64WsqImage) throws IllegalArgumentException {
         return Base64.getDecoder().decode(base64WsqImage);
     }
 
-    // Método para decodificar o WSQ para BufferedImage usando jnbis
     private BufferedImage decodeWsqToBufferedImage(byte[] wsqImageBytes) {
         Bitmap bitmap = Jnbis.wsq()
                 .decode(wsqImageBytes)
@@ -71,7 +64,6 @@ public class FingerprintController {
         return image;
     }
 
-    // Método para gerar o template ANSI 378 usando SourceAFIS
     private byte[] generateAnsiTemplate(BufferedImage image) throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(image, "bmp", baos);
@@ -83,7 +75,6 @@ public class FingerprintController {
         return template.toByteArray();
     }
 
-    // Método para validar o template ANSI 378
     private boolean isValidAnsiTemplate(byte[] ansiTemplateBytes) {
         try {
             new FingerprintTemplate(ansiTemplateBytes);
