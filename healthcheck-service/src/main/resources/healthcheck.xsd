@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://monteiro.com/healthcheck"
+    xmlns="http://monteiro.com/healthcheck"
+    elementFormDefault="qualified">
+
+    <xs:element name="HealthCheckRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Adicione campos do request aqui se necessário -->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HealthCheckResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
