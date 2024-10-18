@@ -1,7 +1,5 @@
-package com.monteiro.healthcheckservice.config;
+package com.monteiro.webservicesproxypoc.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -17,34 +15,26 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class WebServiceConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebServiceConfig.class);
-
-    public WebServiceConfig() {
-        System.out.println("WebServiceConfig is initialized");
-    }
-
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(context);
         servlet.setTransformWsdlLocations(true);
-        logger.info("MessageDispatcherServlet registered at /ws/*");
         return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
-    @Bean(name = "healthcheck")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema healthcheckSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("HealthCheckPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://monteiro.com/healthcheck");
-        wsdl11Definition.setSchema(healthcheckSchema);
-        return wsdl11Definition;
+    @Bean(name = "webservicesproxypoc")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema combinedSchema) {
+        DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
+        definition.setPortTypeName("WebServicesProxyPocPort");
+        definition.setLocationUri("/ws");
+        definition.setTargetNamespace("http://www.monteiro.com/webservicesproxypoc");
+        definition.setSchema(combinedSchema);
+        return definition;
     }
 
     @Bean
-    public XsdSchema healthcheckSchema() {
-        logger.info("Loading healthcheck.xsd schema");
-        return new SimpleXsdSchema(new ClassPathResource("healthcheck.xsd"));
+    public XsdSchema combinedSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("webservicesproxypoc.xsd"));
     }
 }

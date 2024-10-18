@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.monteiro.com/webservicesproxypoc"
+    xmlns="http://www.monteiro.com/webservicesproxypoc"
+    elementFormDefault="qualified"
+    version="1.0">
+
+    <!-- Definição do statusCheckRequest e Response -->
+    <xs:element name="statusCheckRequest">
+        <xs:complexType>
+            <xs:sequence />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="statusCheckResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string" minOccurs="1" />
+                <xs:element name="date" type="xs:string" minOccurs="1" />
+                <xs:element name="time" type="xs:string" minOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Definição do healthCheckRequest e Response -->
+    <xs:element name="healthCheckRequest">
+        <xs:complexType>
+            <xs:sequence />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="healthCheckResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string" minOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
